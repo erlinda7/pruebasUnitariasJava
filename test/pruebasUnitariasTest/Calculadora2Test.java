@@ -1,10 +1,12 @@
 package pruebasUnitariasTest;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import pruebasUnitarias.*;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -12,15 +14,22 @@ import static org.junit.Assert.*;
  */
 public class Calculadora2Test {
 
-    Calculadora2 calc;
+   static Calculadora2 calc;
 
     public Calculadora2Test() {
     }
 
-    @Before
+    @BeforeClass //se ejecuta una sola vez . bueno para inicializar clases
+    public static void beforeClass(){  
+        System.out.println("beforeClass()");
+        calc =new Calculadora2();
+                
+    }
+    
+    @Before  //se ejecuta antes de cada prueba
     public void before() {
         System.out.println("before()");
-        calc = new Calculadora2();
+        calc.clear();
     }
 
     @After
@@ -29,6 +38,10 @@ public class Calculadora2Test {
         calc.clear();
     }
 
+    @AfterClass
+    public static void  afterClass(){
+        System.out.println("AfterClass()");
+    }
     @Test
     public void testSum() {
         System.out.println("sum()");
